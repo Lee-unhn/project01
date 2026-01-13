@@ -1,78 +1,66 @@
-# 剪刀石頭布 AI 遊戲
+🚀AI Vision Applications Collection
+這是一個基於 MediaPipe 與 OpenCV 開發的 AI 視覺應用整合專案。本專案旨在探索電腦視覺（Computer Vision）在不同場景下的應用，從基礎的手勢辨識到進階的系統自動化操作。
 
-這是一個使用 Python 開發的桌面應用程式，您可以透過攝影機即時出拳，與 AI 進行一場剪刀石頭布的對決。
+📂 專案功能說明
+目前專案內包含以下四大核心系統：
 
-專案結合了電腦視覺模型、遊戲邏輯和現代化的圖形使用者介面(GUI)，提供流暢的互動體驗。
+1. ✌️ 簡單剪刀石頭布系統 (Rock-Paper-Scissors Game)
+功能： 透過鏡頭即時辨識玩家的手勢（剪刀、石頭或布），並與電腦進行對戰。
 
-## ✨ 功能亮點
+技術： 手掌偵測、指尖位置計算、邏輯判定。
 
-- **即時手勢辨識**: 透過攝影機捕捉您的手勢（剪刀、石頭、布）。
-- **AI 對手**: 一個簡單的 AI 會隨機出拳與您對戰。
-- **Modern UI**: 使用 CustomTkinter 打造美觀且現代化的使用者介面。
-- **即時反饋**: 介面會即時顯示攝影機畫面、您的出拳、AI 的出拳以及每一局的勝負結果。
+2. ✋ 手部辨識系統 (Hand Tracking System)
+功能： 高精準度追蹤手部 21 個關鍵點（Landmarks），並即時繪製骨架連線。
 
-## 📂 專案架構概覽
+技術： 使用 MediaPipe Tasks API 定義手部骨架模型。
 
-```
-rock_paper_scissors_app/
-├── models/
-│   └── keras_model.h5      # Keras/TensorFlow 模型檔案
-├── ui/
-│   └── app.py            # CTk UI 主程式碼與應用程式進入點
-├── game_logic/
-│   └── rps_game.py       # 剪刀石頭布遊戲核心邏輯 (勝負判斷、分數計算)
-├── camera_utils/
-│   └── camera_stream.py  # 處理攝影機串流、影像擷取與預處理
-├── requirements.txt      # 專案依賴庫
-└── README.md             # 專案說明
-```
+3. 👤 臉部辨識系統 (Face Detection & Recognition)
+功能： 偵測畫面中的人臉位置，並標記面部特徵點或進行身份識別。
 
-## 🚀 環境設置與安裝
+技術： 臉部關鍵點偵測、邊界框（Bounding Box）繪製。
 
-**1. 克隆專案**
-```bash
-git clone <your-repo-url>
-cd rock_paper_scissors_app
-```
+4. 💻 手勢操縱視窗系統 (Gesture Window Controller)
+功能： 透過特定手勢（如捏合、揮動）來控制電腦視窗，例如調整音量、模擬滑鼠點擊或切換視窗。
 
-**2. 建立並啟用虛擬環境 (建議)**
-```bash
-# Windows
-python -m venv venv
-venv\Scripts\activate
+技術： 座標映射（Mapping）、動態手勢軌跡追蹤、PyAutoGUI 系統整合。
 
-# macOS / Linux
-python3 -m venv venv
-source venv/bin/activate
-```
+🛠️ 技術棧 (Tech Stack)
+程式語言： Python 3.10+
 
-**3. 安裝依賴套件**
+核心框架： * MediaPipe: 提供強大的 AI 模型處理手部與臉部偵測。
 
-本專案需要以下主要套件，您可以透過 `requirements.txt` 一次性安裝：
-```bash
+OpenCV: 用於影像處理與即時畫面渲染。
+
+系統控制： PyAutoGUI / Screen-Brightness-Control (用於視窗操縱)。
+
+🚀 快速上手
+1. 複製專案
+Bash
+
+git clone https://github.com/你的帳號/你的專案名稱.git
+cd AI-media
+2. 環境設定
+建議使用 Conda 或虛擬環境：
+
+Bash
+
+conda create -n mediapipe_env python=3.10
+conda activate mediapipe_env
 pip install -r requirements.txt
-```
-主要的依賴包含：
-- `customtkinter`
-- `opencv-python`
-- `tensorflow` (或 `tflite-runtime`，取決於您的模型)
-- `Pillow` (PIL)
+3. 執行程式
+Bash
 
-**4. 下載模型**
+# 執行手部骨架辨識
+python work1.py
+📈 未來計畫
+[ ] 加入更多自定義手勢模型（Gesture Customization）。
 
-請將您訓練好的手勢辨識模型 (例如 `keras_model.h5` 或 `converted_keras.zip` 解壓縮後的檔案) 放置在 `models/` 資料夾中。
+[ ] 整合多模態互動（同時辨識臉部表情與手勢）。
 
-## ▶️ 如何執行
+[ ] 優化即時處理效能，降低 CPU 使用率。
 
-確保您的攝影機已連接並正常運作。然後執行 UI 應用程式：
-
-```bash
-python ui/app.py
-```
-
-程式啟動後，畫面上會顯示攝影機的即時影像。
-
-## 🎮 遊戲玩法
+📜 授權 (License)
+本專案基於 MIT 授權條款。
 
 1. 將您的手（握拳代表石頭、五指張開代表布、兩指伸出代表剪刀）放在攝影機前。
 2. 應用程式會辨識您的手勢並顯示在畫面上。
