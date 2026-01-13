@@ -1,4 +1,4 @@
-AI Vision Applications Collection
+🚀AI Vision Applications Collection
 這是一個基於 MediaPipe 與 OpenCV 開發的 AI 視覺應用整合專案。本專案旨在探索電腦視覺（Computer Vision）在不同場景下的應用，從基礎的手勢辨識到進階的系統自動化操作。
 
 📂 專案功能說明
