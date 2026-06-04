@@ -1,83 +1,35 @@
-# 剪刀石頭布 AI 遊戲
+# project01 — 剪刀石頭布 AI 遊戲
 
-這是一個使用 Python 開發的桌面應用程式，您可以透過攝影機即時出拳，與 AI 進行一場剪刀石頭布的對決。
+> 早期練習作品：用攝影機 + Teachable Machine 模型玩剪刀石頭布的桌面小程式
 
-專案結合了電腦視覺模型、遊戲邏輯和現代化的圖形使用者介面(GUI)，提供流暢的互動體驗。
+**Author**: [@Lee-unhn](https://github.com/Lee-unhn) · a2264563@gmail.com
+**Status**: Early Project
 
-## ✨ 功能亮點
+## 簡介
 
-- **即時手勢辨識**: 透過攝影機捕捉您的手勢（剪刀、石頭、布）。
-- **AI 對手**: 一個簡單的 AI 會隨機出拳與您對戰。
-- **Modern UI**: 使用 CustomTkinter 打造美觀且現代化的使用者介面。
-- **即時反饋**: 介面會即時顯示攝影機畫面、您的出拳、AI 的出拳以及每一局的勝負結果。
+這是早期接觸 AI 時的練習專案。使用 Python + CustomTkinter 做 GUI、OpenCV 抓攝影機影像、TensorFlow/Keras 載入 Teachable Machine 訓練的模型做手勢辨識，跟一個隨機出拳的 AI 對戰剪刀石頭布。
 
-## 📂 專案架構概覽
+屬於學習過程的成果之一，不是長期維護的專案。
 
-```
-rock_paper_scissors_app/
-├── models/
-│   └── keras_model.h5      # Keras/TensorFlow 模型檔案
-├── ui/
-│   └── app.py            # CTk UI 主程式碼與應用程式進入點
-├── game_logic/
-│   └── rps_game.py       # 剪刀石頭布遊戲核心邏輯 (勝負判斷、分數計算)
-├── camera_utils/
-│   └── camera_stream.py  # 處理攝影機串流、影像擷取與預處理
-├── requirements.txt      # 專案依賴庫
-└── README.md             # 專案說明
+## 架構
+
+```mermaid
+flowchart LR
+  Cam[攝影機] --> CV[OpenCV 擷取]
+  CV --> Pre[預處理 224x224]
+  Pre --> Model[Keras 模型推論]
+  Model --> Logic[剪刀石頭布勝負判斷]
+  Logic --> UI[CustomTkinter UI]
+  AI[隨機 AI 出拳] --> Logic
 ```
 
-## 🚀 環境設置與安裝
+## 主要檔案
 
-**1. 克隆專案**
-```bash
-git clone <your-repo-url>
-cd rock_paper_scissors_app
-```
+- `README.md` — 專案說明
+- `readone` — 早期筆記檔
 
-**2. 建立並啟用虛擬環境 (建議)**
-```bash
-# Windows
-python -m venv venv
-venv\Scripts\activate
+（原始開發結構包含 `ui/app.py`、`game_logic/rps_game.py`、`camera_utils/camera_stream.py`、`models/keras_model.h5`，repo 目前僅保留 README。）
 
-# macOS / Linux
-python3 -m venv venv
-source venv/bin/activate
-```
+## 備註
 
-**3. 安裝依賴套件**
-
-本專案需要以下主要套件，您可以透過 `requirements.txt` 一次性安裝：
-```bash
-pip install -r requirements.txt
-```
-主要的依賴包含：
-- `customtkinter`
-- `opencv-python`
-- `tensorflow` (或 `tflite-runtime`，取決於您的模型)
-- `Pillow` (PIL)
-
-**4. 下載模型**
-
-請將您訓練好的手勢辨識模型 (例如 `keras_model.h5` 或 `converted_keras.zip` 解壓縮後的檔案) 放置在 `models/` 資料夾中。
-
-## ▶️ 如何執行
-
-確保您的攝影機已連接並正常運作。然後執行 UI 應用程式：
-
-```bash
-python ui/app.py
-```
-
-程式啟動後，畫面上會顯示攝影機的即時影像。
-
-## 🎮 遊戲玩法
-
-1. 將您的手（握拳代表石頭、五指張開代表布、兩指伸出代表剪刀）放在攝影機前。
-2. 應用程式會辨識您的手勢並顯示在畫面上。
-3. AI 會同時做出它的選擇。
-4. 每一局的結果（贏、輸、平手）會顯示在畫面上方。
-
----
-祝您遊戲愉快！
+早期學 AI / Python GUI 的練習作。模型路徑為硬編碼，僅用於個人本機測試，不建議直接 clone 使用。
